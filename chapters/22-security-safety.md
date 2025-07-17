@@ -335,7 +335,7 @@ Let's combine all these principles to build an AI system that analyzes data from
 
 ```mermaid
 graph TD
-    A[Device Data <br> (Contains PHI)] --> B{API Gateway};
+    A[Device Data<br/>Contains PHI] --> B{API Gateway};
     B --> C[PII Anonymizer Service];
     C -- Anonymized Data --> D[AI Analysis Service];
     D -- Secure Prompt --> E[LLM API];
@@ -343,11 +343,11 @@ graph TD
     F -- Sanitized Analysis --> G[Database];
     F -- De-anonymize for Clinician --> H[Clinician Dashboard];
 
-    subgraph Your Secure Infrastructure
+    subgraph "Your Secure Infrastructure"
         B; C; D; F; G; H;
     end
     
-    C --> I(Audit Log);
+    C --> I[Audit Log];
     D --> I;
     F --> I;
 ```

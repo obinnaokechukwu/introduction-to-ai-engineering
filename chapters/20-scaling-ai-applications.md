@@ -140,11 +140,11 @@ The single biggest challenge in scaling AI applications is the highly variable p
 
 ```mermaid
 graph TD
-    A[API Server] -- Adds Task --> B{Message Queue <br> (RabbitMQ / Redis)};
+    A[API Server] -- Adds Task --> B{Message Queue<br/>RabbitMQ / Redis};
     B -- Distributes Tasks --> C1[AI Worker 1];
     B --> C2[AI Worker 2];
     B --> C3[AI Worker 3];
-    C1 -- Writes Result --> D[Results Store <br> (Redis / Database)];
+    C1 -- Writes Result --> D[Results Store<br/>Redis / Database];
     C2 --> D;
     C3 --> D;
     E[Client App] -- Polls for Result --> D;
@@ -279,31 +279,31 @@ Let's bring all these patterns together to design a globally-scalable IoT platfo
 
 ```mermaid
 graph LR
-    subgraph Global Load Balancer
+    subgraph "Global Load Balancer"
         GLB[Geo-DNS Router]
     end
     
-    subgraph Region: us-east-1
+    subgraph "Region: us-east-1"
         GW_US[API Gateway] --> LB_US[AI Load Balancer]
         LB_US --> S1_US[Server 1] & S2_US[Server 2] & S3_US[Server 3]
-        S1_US --> Q_US[Queue (RabbitMQ)]
+        S1_US --> Q_US[Queue RabbitMQ]
         S2_US --> Q_US
         S3_US --> Q_US
-        Q_US --> W_US[Worker Pool (Celery)]
-        W_US --> C_US[Cache (Redis)] & DB_US[Databases] & AI_US[AI APIs]
+        Q_US --> W_US[Worker Pool Celery]
+        W_US --> C_US[Cache Redis] & DB_US[Databases] & AI_US[AI APIs]
     end
 
-    subgraph Region: eu-west-1
+    subgraph "Region: eu-west-1"
         GW_EU[API Gateway] --> LB_EU[AI Load Balancer]
         LB_EU --> S1_EU[Server 1] & S2_EU[Server 2]
-        S1_EU --> Q_EU[Queue (RabbitMQ)]
+        S1_EU --> Q_EU[Queue RabbitMQ]
         S2_EU --> Q_EU
-        Q_EU --> W_EU[Worker Pool (Celery)]
-        W_EU --> C_EU[Cache (Redis)] & DB_EU[Databases] & AI_EU[AI APIs]
+        Q_EU --> W_EU[Worker Pool Celery]
+        W_EU --> C_EU[Cache Redis] & DB_EU[Databases] & AI_EU[AI APIs]
     end
     
     GLB --> GW_US & GW_EU
-    DB_US <--> DB_EU  # Database Replication
+    DB_US <--> DB_EU
 ```
 
 **Key Features of this Architecture:**

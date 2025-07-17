@@ -35,8 +35,8 @@ graph TD
     A[Video Feed] --> C{Multimodal LLM};
     B[Audio Stream] --> C;
     D[Live Sensor Data] --> C;
-    E[Maintenance Manual (PDF)] --> C;
-    C --> F[Comprehensive Diagnosis <br> & Action Plan];
+    E[Maintenance Manual PDF] --> C;
+    C --> F[Comprehensive Diagnosis<br/>& Action Plan];
 ```
 
 ### A Practical Example: Multimodal Industrial Diagnosis
@@ -140,14 +140,14 @@ In this model, the cloud is used for training large models and performing deep, 
 ```mermaid
 graph TD
     subgraph Cloud
-        A[Large Foundational Model (e.g., GPT-4o)] -- Trains --> B(Specialized Edge Model);
+        A[Large Foundational Model<br/>e.g., GPT-4o] -- Trains --> B[Specialized Edge Model];
         C[Central Analytics Dashboard]
     end
 
-    subgraph Edge Devices (e.g., IoT Gateway, Smart Camera)
+    subgraph "Edge Devices (e.g., IoT Gateway, Smart Camera)"
         B -- Deployed to --> D[Edge Device];
         E[Live Sensor/Camera Data] --> D;
-        D -- Real-time Inference --> F[Immediate Action <br> (e.g., Stop Machine, Send Alert)];
+        D -- Real-time Inference --> F[Immediate Action<br/>e.g., Stop Machine, Send Alert];
         D -- Sends Summaries/Anomalies --> C;
     end
 ```
@@ -247,19 +247,19 @@ Let's synthesize these future trends into a forward-looking architecture for a g
 
 ```mermaid
 graph TD
-    subgraph Global Cloud
+    subgraph "Global Cloud"
         A[Quantum Co-processor] <--> B{Central Foundational Model};
         B -- Trains & Dispatches --> D;
         F[Federated Learning Aggregator] --> B;
         G[Global Analytics & Control Plane]
     end
 
-    subgraph Regional Cloud (e.g., us-east-1)
+    subgraph "Regional Cloud (e.g., us-east-1)"
         C[Regional Analytics & Cache] --> G;
     end
 
-    subgraph Edge Site (e.g., Factory Floor)
-        H[IoT Gateway (Edge Server)] -- Runs --> D[Specialized Edge AI Model];
+    subgraph "Edge Site (e.g., Factory Floor)"
+        H[IoT Gateway Edge Server] -- Runs --> D[Specialized Edge AI Model];
         E[Sensor/Video/Audio Data] --> D;
         D -- Local Control --> I[Actuators];
         D -- Summarized Data / Anomalies --> C;

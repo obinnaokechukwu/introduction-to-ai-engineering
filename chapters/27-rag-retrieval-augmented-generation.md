@@ -56,17 +56,17 @@ The RAG workflow consists of two main phases:
 ```mermaid
 graph TD
     subgraph Offline Indexing Phase
-        A[Your Documents<br>(PDFs, TXT, etc.)] --> B(1. Chunking<br>Split into small pieces);
-        B --> C(2. Embedding<br>Convert chunks to vectors);
-        C --> D[3. Vector Database<br>(ChromaDB, Pinecone)];
+        A[Your Documents<br/>PDFs, TXT, etc.] --> B[1. Chunking<br/>Split into small pieces];
+        B --> C[2. Embedding<br/>Convert chunks to vectors];
+        C --> D[3. Vector Database<br/>ChromaDB, Pinecone];
     end
 
     subgraph Real-time Query Phase
-        E[User Question] --> F(4. Embed Query);
+        E[User Question] --> F[4. Embed Query];
         F --> G{5. Semantic Search};
         D --> G;
         G --> H[6. Retrieve Relevant Chunks];
-        H --> I(7. Augment Prompt);
+        H --> I[7. Augment Prompt];
         E --> I;
         I --> J[LLM];
         J --> K[Final Answer];

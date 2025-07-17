@@ -267,13 +267,13 @@ Let's bring all these concepts together to build our target application: a syste
 
 ```mermaid
 graph TD
-    subgraph Clients
+    subgraph "Clients"
         A[IoT Devices] -- Sensor Data via WebSocket --> B;
         C[Monitoring Dashboard] -- Subscribes via WebSocket --> B;
     end
 
-    subgraph FastAPI Server
-        B(WebSocket Gateway);
+    subgraph "FastAPI Server"
+        B[WebSocket Gateway];
         B --> D{Anomaly Detector};
         D -- Rule-based Check --> E[No Anomaly];
         D -- Anomaly Detected --> F{AI Analysis};
@@ -282,9 +282,9 @@ graph TD
         B -- Pushes Alerts & Insights --> C;
     end
 
-    subgraph Backend
+    subgraph "Backend"
         G --> H[Celery Workers];
-        H -- Accesses --> I[AI Cache (Redis)];
+        H -- Accesses --> I[AI Cache Redis];
         I <--> H;
         H -- Calls --> J[OpenAI API];
     end

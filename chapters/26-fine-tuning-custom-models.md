@@ -28,10 +28,10 @@ Let's use a clear decision framework.
 ```mermaid
 graph TD
     A[Start: I need better AI performance] --> B{Can I improve my prompt?};
-    B -- Yes --> C[Optimize Prompt (Chapter 9-12)];
-    B -- No --> D{Is the problem about accessing <br> specific, factual, or <br> rapidly changing information?};
-    D -- Yes --> E[Use RAG (Chapter 27)];
-    D -- No --> F{Is the problem about teaching the AI a <br> new skill, a nuanced style, or a <br> complex, proprietary format?};
+    B -- Yes --> C[Optimize Prompt<br/>Chapter 9-12];
+    B -- No --> D{Is the problem about accessing<br/>specific, factual, or<br/>rapidly changing information?};
+    D -- Yes --> E[Use RAG<br/>Chapter 27];
+    D -- No --> F{Is the problem about teaching the AI a<br/>new skill, a nuanced style, or a<br/>complex, proprietary format?};
     F -- Yes --> G[Consider Fine-Tuning];
     F -- No --> C;
 ```

@@ -143,7 +143,7 @@ In this model, services don't call each other directly. Instead, they produce an
 
 ```mermaid
 graph TD
-    A[Sensor Service] -- Publishes 'sensor_reading' event --> B[Message Bus (Kafka)];
+    A[Sensor Service] -- Publishes 'sensor_reading' event --> B[Message Bus Kafka];
     B -- Consumes 'sensor_reading' event --> C[AI Analysis Service];
     C -- Publishes 'analysis_complete' event --> B;
     B -- Consumes 'analysis_complete' event --> D[Alerting Service];
@@ -257,32 +257,32 @@ Let's bring all these patterns together to design a production-ready IoT analyti
 
 ```mermaid
 graph TD
-    subgraph Edge Devices
+    subgraph "Edge Devices"
         A[IoT Sensors] -->|MQTT| B[IoT Gateway];
     end
     
-    B -->|Publishes 'sensor_reading'| C[Event Bus (Kafka)];
+    B -->|Publishes 'sensor_reading'| C[Event Bus Kafka];
     
-    subgraph Microservices
+    subgraph "Microservices"
         C --> D[Ingestion Service];
-        D --> E[Time-Series DB (InfluxDB)];
-        D --> F[Vector DB (ChromaDB)];
+        D --> E[Time-Series DB InfluxDB];
+        D --> F[Vector DB ChromaDB];
         
         C --> G[Real-Time AI Processor];
-        G --> H[Cache (Redis)];
+        G --> H[Cache Redis];
         G --> I[AI Provider APIs];
         G -- Publishes 'analysis_event' --> C;
         
-        C --> J[Batch AI Processor (Celery)];
+        C --> J[Batch AI Processor Celery];
         J -- Reads from --> E;
         J --> H;
         J --> I;
         J -- Publishes 'report_event' --> C;
     end
     
-    subgraph Serving Layer
-        K[API Gateway] --> L[Dashboard Service (WebSockets)];
-        K --> M[Query Service (REST API)];
+    subgraph "Serving Layer"
+        K[API Gateway] --> L[Dashboard Service WebSockets];
+        K --> M[Query Service REST API];
         L -- Subscribes to --> C;
         M -- Reads from --> E;
     end

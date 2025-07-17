@@ -177,14 +177,14 @@ This is a zero-downtime deployment technique. You have two identical production 
 
 ```mermaid
 graph TD
-    subgraph Before Deployment
-        Router1[Load Balancer] --> Blue[Blue Environment (v1)];
-        Green[Green Environment (v2)]-.->|Idle| X;
+    subgraph "Before Deployment"
+        Router1[Load Balancer] --> Blue[Blue Environment v1];
+        Green[Green Environment v2]-.->|Idle| X[Not Active];
     end
 
-    subgraph After Deployment
-        Router2[Load Balancer] --> Green2[Green Environment (v2)];
-        Blue2[Blue Environment (v1)]-.->|Idle| Y;
+    subgraph "After Deployment"
+        Router2[Load Balancer] --> Green2[Green Environment v2];
+        Blue2[Blue Environment v1]-.->|Idle| Y[Not Active];
     end
 ```
 

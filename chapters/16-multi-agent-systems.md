@@ -240,14 +240,14 @@ This is the most straightforward pattern. A "Coordinator" agent acts as a manage
 ```mermaid
 graph TD
     subgraph Centralized System
-        A[User Request] --> B(Coordinator Agent);
-        B -- Subtask 1 --> C[Worker Agent 1 <br> (e.g., Traffic)];
-        B -- Subtask 2 --> D[Worker Agent 2 <br> (e.g., Emergency)];
-        B -- Subtask 3 --> E[Worker Agent 3 <br> (e.g., Environment)];
-        C --> F{Synthesized <br> Solution};
-        D --> F;
-        E --> F;
-        B -- Collects & Synthesizes --> F;
+        A[User Request] --> B(Coordinator Agent)
+        B -- Subtask 1 --> C["Worker Agent 1<br/>(e.g., Traffic)"]
+        B -- Subtask 2 --> D["Worker Agent 2<br/>(e.g., Emergency)"]
+        B -- Subtask 3 --> E["Worker Agent 3<br/>(e.g., Environment)"]
+        C --> F{"Synthesized<br/>Solution"}
+        D --> F
+        E --> F
+        B -- Collects & Synthesizes --> F
     end
 ```
 

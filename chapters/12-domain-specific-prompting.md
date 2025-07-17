@@ -8,12 +8,12 @@ Think of it as the difference between hiring a generalist and hiring a specialis
 
 By the end of this chapter, you will be able to:
 
--   Craft prompts tailored to specific industries like manufacturing, healthcare, and finance.
--   Generate high-quality, domain-specific technical documentation.
--   Build sophisticated code generation workflows that adhere to industry best practices.
--   Design AI-powered data analysis systems that understand domain-specific KPIs.
--   Develop effective, context-aware customer service automation for specialized products.
--   Create detailed IoT device troubleshooting guides using embedded domain knowledge.
+- Craft prompts tailored to specific industries like manufacturing, healthcare, and finance.
+- Generate high-quality, domain-specific technical documentation.
+- Build sophisticated code generation workflows that adhere to industry best practices.
+- Design AI-powered data analysis systems that understand domain-specific KPIs.
+- Develop effective, context-aware customer service automation for specialized products.
+- Create detailed IoT device troubleshooting guides using embedded domain knowledge.
 
 ## The Power of Context: Generic vs. Domain-Specific Prompts
 
@@ -60,10 +60,10 @@ Data:
 {data}
 
 Provide your analysis, focusing specifically on:
--   Industry-specific Key Performance Indicators (KPIs).
--   Potential safety and regulatory implications.
--   Opportunities for operational efficiency improvements relevant to the {domain} sector.
--   Actionable insights tailored to a {domain} context.
+- Industry-specific Key Performance Indicators (KPIs).
+- Potential safety and regulatory implications.
+- Opportunities for operational efficiency improvements relevant to the {domain} sector.
+- Actionable insights tailored to a {domain} context.
 """
     response = client.chat.completions.create(
         model="gpt-4o-mini",
@@ -90,6 +90,8 @@ print("\n--- Manufacturing-Specific Analysis ---")
 print(domain_specific_analysis(factory_data, "manufacturing"))
 ```
 
+**Analysis Results:**
+
 The generic analysis will correctly note that output is below target and the defect rate is high. The manufacturing-specific analysis, however, will likely discuss concepts like Overall Equipment Effectiveness (OEE), suggest potential causes for the reduced throughput related to motor temperature, and frame the defect rate in terms of Six Sigma or other quality control methodologies. It speaks the language of the domain.
 
 ## Domain 1: Generating Technical Documentation
@@ -102,6 +104,9 @@ Let's generate developer-focused documentation for an IoT API.
 
 ```python
 import json
+import openai
+
+client = openai.OpenAI()
 
 def generate_api_documentation(api_spec: dict) -> str:
     """Generates comprehensive API documentation from a specification."""
@@ -112,14 +117,14 @@ You are a senior technical writer specializing in creating clear, developer-frie
 Generate a complete API reference document in Markdown format for the following API specification.
 
 **API Specification:**
-```json
+
 {json.dumps(api_spec, indent=2)}
-```
+
 
 **Documentation Requirements:**
-1.  **Overview:** Explain the API's purpose, base URL, version, and authentication method.
-2.  **Endpoints:** For each endpoint, detail the HTTP method, path, description, parameters, request body (if any), and example responses for both success (200 OK) and common errors (e.g., 404 Not Found, 401 Unauthorized).
-3.  **Code Examples:** Provide practical code examples for each endpoint in Python (using the `requests` library) and a `cURL` command.
+1. **Overview:** Explain the API's purpose, base URL, version, and authentication method.
+2. **Endpoints:** For each endpoint, detail the HTTP method, path, description, parameters, request body (if any), and example responses for both success (200 OK) and common errors (e.g., 404 Not Found, 401 Unauthorized).
+3. **Code Examples:** Provide practical code examples for each endpoint in Python (using the `requests` library) and a `cURL` command.
 """
     
     response = client.chat.completions.create(
@@ -153,6 +158,7 @@ api_docs = generate_api_documentation(iot_api_specification)
 print("--- Generated API Documentation ---")
 print(api_docs)
 ```
+
 By providing the full specification and clear instructions on the required sections, we get a complete and professional document, not just a simple description.
 
 ## Domain 2: Code Generation and Review
@@ -205,6 +211,7 @@ generated_code = generate_iot_code(mqtt_client_requirements)
 print("--- Generated IoT MQTT Client Code ---")
 print(generated_code)
 ```
+
 By explicitly listing the required engineering patterns, you guide the AI to produce code that is not just functional but also robust and maintainable in a real-world IoT environment.
 
 ### Performing a Domain-Specific Code Review
@@ -228,9 +235,8 @@ You are a senior IoT architect performing a code review.
 Analyze the following Python code for an IoT application.
 
 **Code to Review:**
-```python
 {code_snippet}
-```
+
 
 **Review Focus:**
 Evaluate the code against these IoT-specific best practices:
@@ -277,6 +283,7 @@ When analyzing data, providing domain context transforms the AI from a simple da
 
 Let's analyze production data from the perspective of a quality control engineer.
 
+
 ```python
 def analyze_manufacturing_data(data: dict) -> str:
     """Analyzes production data with a manufacturing expert persona."""
@@ -288,10 +295,10 @@ You are a Quality Control Engineer in a manufacturing plant. Analyze the followi
 {json.dumps(data, indent=2)}
 
 Provide your analysis focusing on:
--   **Overall Equipment Effectiveness (OEE):** Calculate or estimate the OEE score.
--   **Root Cause Analysis:** What is the most likely cause of the increased defect rate?
--   **Actionable Insights:** What specific, practical steps should be taken to improve quality and throughput?
--   **Process Control:** Are the processes in a state of statistical control?
+- **Overall Equipment Effectiveness (OEE):** Calculate or estimate the OEE score.
+- **Root Cause Analysis:** What is the most likely cause of the increased defect rate?
+- **Actionable Insights:** What specific, practical steps should be taken to improve quality and throughput?
+- **Process Control:** Are the processes in a state of statistical control?
 """
     
     response = client.chat.completions.create(
@@ -352,20 +359,20 @@ You are an expert field service technician creating a troubleshooting guide.
 **Reported Issue:** {issue_description}
 
 **Your Knowledge Base for this Device Type:**
--   Common Issues: {knowledge.get('common_issues', 'N/A')}
--   Required Tools: {knowledge.get('diagnostic_tools', 'N/A')}
--   Critical Safety Note: {knowledge.get('safety_note', 'Follow standard safety procedures.')}
+- Common Issues: {knowledge.get('common_issues', 'N/A')}
+- Required Tools: {knowledge.get('diagnostic_tools', 'N/A')}
+- Critical Safety Note: {knowledge.get('safety_note', 'Follow standard safety procedures.')}
 
 Create a systematic, step-by-step troubleshooting guide. Structure it with the following sections:
-1.  **Initial Assessment & Safety:** What to check first and what safety precautions to take.
-2.  **Hypothesis 1 (Most Likely Cause):** State the most probable cause based on the issue and your knowledge.
-3.  **Verification Steps for Hypothesis 1:** List the specific actions to confirm or deny this cause.
-4.  **Hypothesis 2 (Next Likely Cause):** State the second most probable cause.
-5.  **Verification Steps for Hypothesis 2:** List the actions to test this hypothesis.
-6.  **Escalation Path:** When to stop and call for a specialist engineer.
+1. **Initial Assessment & Safety:** What to check first and what safety precautions to take.
+2. **Hypothesis 1 (Most Likely Cause):** State the most probable cause based on the issue and your knowledge.
+3. **Verification Steps for Hypothesis 1:** List the specific actions to confirm or deny this cause.
+4. **Hypothesis 2 (Next Likely Cause):** State the second most probable cause.
+5. **Verification Steps for Hypothesis 2:** List the actions to test this hypothesis.
+6. **Escalation Path:** When to stop and call for a specialist engineer.
 """
         
-        response = client.chat.completions.create(
+        response = self.client.chat.completions.create(
             model="gpt-4o-mini",
             messages=[{"role": "user", "content": prompt}],
             temperature=0.2
@@ -380,6 +387,7 @@ guide = troubleshooter.generate_troubleshooting_guide("pressure_transmitter", re
 print("--- Generated Troubleshooting Guide ---")
 print(guide)
 ```
+
 This final example shows how embedding a structured knowledge base directly into the prompt allows the AI to generate highly relevant, expert-level content that is far more useful than a generic response.
 
 ## Conclusion
@@ -387,10 +395,10 @@ This final example shows how embedding a structured knowledge base directly into
 Domain-specific prompting elevates you from a user of AI to an architect of AI-powered expertise. By embedding the context, vocabulary, and workflows of a specific field into your prompts, you can create applications that deliver specialized and significant value.
 
 Remember these key best practices:
--   **Give the AI a Persona:** Start your prompt by telling the AI who it is ("You are a...").
--   **Provide Domain Context:** Include industry-specific rules, constraints, and knowledge.
--   **Use Domain Terminology:** Speak the language of the expert you want the AI to emulate.
--   **Structure for the Domain:** Ask for outputs that match the formats used in that field (e.g., API docs, engineering reports, financial analyses).
+- **Give the AI a Persona:** Start your prompt by telling the AI who it is ("You are a...").
+- **Provide Domain Context:** Include industry-specific rules, constraints, and knowledge.
+- **Use Domain Terminology:** Speak the language of the expert you want the AI to emulate.
+- **Structure for the Domain:** Ask for outputs that match the formats used in that field (e.g., API docs, engineering reports, financial analyses).
 
 By applying these techniques, you can transform a general-purpose language model into a team of specialized virtual experts, ready to tackle complex challenges across any industry.
 
