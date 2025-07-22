@@ -95,10 +95,11 @@ After completing this book, you will:
 - Practical IoT diagnostic system
 
 #### [Chapter 10: Advanced Prompting Strategies](chapters/10-advanced-prompting-strategies.md)
-- Self-consistency
-- Tree-of-thought prompting
-- ReAct (Reasoning and Acting)
-- Constitutional AI
+- Self-consistency for improved reliability
+- Tree-of-thought prompting for complex reasoning
+- ReAct (Reasoning and Acting) for dynamic problem solving
+- Multi-Agent Debate for reducing bias and improving robustness
+- Reflexion for iterative self-improvement
 - Prompt chaining and workflows
 
 #### [Chapter 11: Structured Output Generation](chapters/11-structured-output-generation.md)
@@ -258,6 +259,7 @@ After completing this book, you will:
 - [Full End-to-End Pipeline for LLM Apps (Rohan's Bytes)](https://www.rohan-paul.com/p/full-end-to-end-pipeline-for-developing) – A 2024–2025 guide to building, deploying, and monitoring LLM-powered applications, with technical best practices and industry case studies.
 
 ### Prompt Engineering
+- [Prompt Engineering Guide](https://www.promptingguide.ai/) – Comprehensive guide to prompting techniques, from basics to advanced strategies like chain-of-thought, tree-of-thought, and multi-agent systems.
 - [OpenAI Prompt Engineering Guide](https://platform.openai.com/docs/guides/prompt-engineering) – Official best practices and examples for crafting effective prompts.
 - [Prompt Engineering Mastery: The Complete Guide](https://www.aifire.co/p/the-ultimate-guide-for-mastering-ai-engineering-in-2024) – A step-by-step roadmap for mastering prompt engineering and LLMs, with practical resources and project ideas.
 - [Anthropic Prompt Engineering Tutorial](https://docs.anthropic.com/claude/docs/prompt-engineering) – Anthropic’s hands-on guide to prompt design for Claude models.
