@@ -11,7 +11,6 @@ By the end of this chapter, you will be able to:
 -   Implement **Self-Consistency** to improve the reliability of AI-generated answers.
 -   Use **Tree-of-Thought (ToT)** prompting to explore multiple reasoning paths for complex problems.
 -   Apply the **ReAct (Reasoning and Acting)** pattern to build agents that can dynamically gather information.
--   Design **Constitutional AI** prompts to create safer, more aligned, and ethical AI responses.
 -   Build sophisticated **Prompt Chains** that break down a complex task into a sequence of specialized prompts.
 
 ## The Limits of Simple Prompts
@@ -246,55 +245,7 @@ react_agent.run(complex_problem)
 
 **When to use it:** For dynamic problems where the AI needs to gather information incrementally to solve a problem. This is the foundation of autonomous agents.
 
-## Strategy 4: Constitutional AI
 
-**The Idea:** When building AI systems, especially those that interact with users or control systems, safety is paramount. Constitutional AI is a technique for constraining an AI's behavior by providing it with a "constitution"—a set of explicit principles or rules it must follow.
-
-This is a more robust way of guiding behavior than a simple system prompt because it forces the AI to check its own output against the rules.
-
-### Implementing a Constitutional Prompt
-
-```python
-def get_constitutional_response(problem: str) -> str:
-    """Gets an AI recommendation that must adhere to a safety constitution."""
-    
-    # Define the constitution (the set of rules)
-    safety_constitution = """
-Principle 1: Prioritize Human Safety. Never suggest an action that could directly or indirectly harm a person.
-Principle 2: Preserve System Integrity. Do not recommend actions that could cause irreversible damage to equipment.
-Principle 3: Follow Protocol. Any suggested action must align with standard industrial safety protocols, including lockout/tagout procedures.
-Principle 4: Acknowledge Uncertainty. If the root cause is not certain, state this clearly and recommend gathering more data before taking irreversible action.
-Principle 5: Recommend Reversibility. Prefer solutions that are easily reversible.
-"""
-
-    prompt = f"""
-You are a safety-conscious AI assistant for an industrial plant. You must generate a response that strictly adheres to the following constitution.
-
---- CONSTITUTION ---
-{safety_constitution}
---- END CONSTITUTION ---
-
-Problem: "{problem}"
-
-First, write a draft response with your initial analysis and recommended actions.
-Then, critically review your draft against each principle of the constitution.
-Finally, provide only the revised, final response that is fully compliant with all principles.
-"""
-    
-    response = client.chat.completions.create(
-        model="gpt-4o-mini",
-        messages=[{"role": "user", "content": prompt}]
-    )
-    return response.choices[0].message.content
-
-# A problem with clear safety implications
-safety_critical_problem = "A pressure valve on a chemical tank is stuck. The pressure is slowly rising and is currently 10% above the safe operating limit."
-
-print(get_constitutional_response(safety_critical_problem))
-```
-This "draft, review, revise" process, guided by the constitution, produces much safer and more responsible outputs than a simple direct prompt.
-
-**When to use it:** Always, when building systems that can have real-world consequences. It's essential for applications in healthcare, industrial control, finance, and any other domain where safety and reliability are non-negotiable.
 
 ## Conclusion
 
@@ -303,9 +254,8 @@ You have now moved beyond basic prompting and into the realm of advanced AI reas
 -   **Self-Consistency:** Use for accuracy and to reduce the randomness of single-shot answers.
 -   **Tree-of-Thought:** Use for exploring complex problems with multiple possible solutions.
 -   **ReAct:** Use for dynamic problems that require information gathering.
--   **Constitutional AI:** Use to ensure safety, alignment, and ethical behavior.
 
-Often, the most powerful applications will **chain** these strategies together. For example, you might use a Tree-of-Thought approach where each "thought" is a ReAct loop, and the final synthesis is checked against a safety constitution. By mastering these patterns, you are truly engineering with AI, not just prompting it.
+Often, the most powerful applications will **chain** these strategies together. For example, you might use a Tree-of-Thought approach where each "thought" is a ReAct loop. By mastering these patterns, you are truly engineering with AI, not just prompting it.
 
 # References and Further Reading
 
